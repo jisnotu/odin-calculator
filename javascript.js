@@ -13,3 +13,21 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
+
+function operate(op, a, b) {
+  switch (op) {
+    case '+':
+      return add(a, b);
+    case '-':
+      return subtract(a, b);
+    case '*':
+      return multiply(a, b);
+    case '/':
+      return divide(a, b);
+    default:
+      console.log('ERROR: Received an operator that is not one of add, subtract, multiply, or divide.');
+  }
+}
+
+let a, b;
+let operator;
