@@ -28,7 +28,6 @@ body {
 
 .button-container {
   flex: 4 0 0;
-  background-color: orange;
   display: flex;
   align-items: stretch;
   gap: 8px;
@@ -55,7 +54,6 @@ body {
 
 .operator-button-container {
   flex: 1 0 0;
-  background-color: hotpink;
   display: flex;
   flex-direction: column;
   align-items: stretch;
