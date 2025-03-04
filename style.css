@@ -29,4 +29,32 @@ body {
 .button-container {
   flex: 4 0 0;
   background-color: orange;
+  padding: 8px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.digit-button-container {
+  flex: 3 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.digit-button-container div {
+  flex: 1 0 0;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.digit-button-container div button {
+  flex: 1 0 0;
+}
+
+.operator-button-container {
+  flex: 1 0 0;
+  background-color: hotpink;
 }
