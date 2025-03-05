@@ -29,10 +29,12 @@ function operate(op, a, b) {
   }
 }
 
-let a, b;
+let a = 0;
+let b;
 let operator;
 
 let display = document.querySelector('.display');
+display.textContent = a;
 const buttonContainer = document.querySelector('.button-container');
 buttonContainer.addEventListener('click', event => {
   let target = event.target;
