@@ -55,5 +55,18 @@ buttonContainer.addEventListener('click', event => {
 function handleDigitButton(button) {
   let value = button.textContent;
 
-  display.textContent += value;
+  if (display.textContent === '0') {
+    if (value === '0') {
+      return;
+    }
+    else {
+      display.textContent = value;
+    }
+  }
+
+  else {
+    display.textContent += value;
+  }
+  
+  a = +display.textContent;
 }
