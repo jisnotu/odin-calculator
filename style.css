@@ -24,6 +24,8 @@ body {
 .display {
   flex: 1 0 0;
   background-color: white;
+  font-size: 64px;
+  font-family: monospace;
 }
 
 .button-container {

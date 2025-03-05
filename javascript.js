@@ -25,9 +25,33 @@ function operate(op, a, b) {
     case '/':
       return divide(a, b);
     default:
-      console.log('ERROR: Received an operator that is not one of add, subtract, multiply, or divide.');
+      alert('ERROR: Received an operator that is not one of add, subtract, multiply, or divide.');
   }
 }
 
 let a, b;
 let operator;
+
+let display = document.querySelector('.display');
+const buttonContainer = document.querySelector('.button-container');
+buttonContainer.addEventListener('click', event => {
+  let target = event.target;
+
+  if (target.tagName === 'BUTTON') {
+    let className = target.className;
+
+    switch (className) {
+      case 'digit-button':
+        handleDigitButton(target);
+        break;
+      default:
+        alert('ERROR: An unrecognized button was pressed.');
+    }
+  }
+});
+
+function handleDigitButton(button) {
+  let value = button.textContent;
+
+  display.textContent += value;
+}
