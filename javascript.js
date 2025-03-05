@@ -33,7 +33,7 @@ let a = 0;
 let b;
 let operator;
 
-let display = document.querySelector('.display');
+let display = document.querySelector('.display div');
 display.textContent = a;
 const buttonContainer = document.querySelector('.button-container');
 buttonContainer.addEventListener('click', event => {
