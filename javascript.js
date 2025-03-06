@@ -65,7 +65,12 @@ function handleDigitButton(button) {
   }
 
   else {
-    display.textContent += value;
+    if (display.textContent.length >= 12) {
+      return;
+    }
+    else {
+      display.textContent += value;
+    }
   }
   
   a = +display.textContent;
