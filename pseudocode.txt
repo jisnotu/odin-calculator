@@ -1,0 +1,33 @@
+when (non =) operator button is pressed
+	if `a` has no value, then store display in `a` and set `operator` to button value
+	if only `a` has a value, then set `operator` to button value
+	if both `a` and `b` have a value, then do the operation using the previously stored operator, and then store the result in `a` and clear `b`.
+
+
+when = button is pressed
+	if `operator` doesn't have a value, then do nothing
+	if `operator` does have a value,
+		if `a` and `b` both have a value, then do the operation and clear `a`, `b`, and `operator`
+		otherwise, do nothing
+
+
+when digit button is pressed
+	if `operator` has no value
+		if `a` has no value, then set `a` and display both to button value
+		if `a` has a value
+			if value is 0
+				if button value is 0, then do nothing
+				otherwise, set `a` and display both to button value
+			otherwise, append button value to display and store that in `a`
+	if `operator` has a value,
+		if `b` has no value, then set `b` and display both to button value
+		if `b` has a value
+			if value is 0
+				if button value is 0, then do nothing
+				otherwise, set `b` and display both to button value
+			otherwise, append button value to display and store that in `b`
+
+
+when clear button is pressed
+  set display and `a` to 0
+  clear `b` and `operator`
