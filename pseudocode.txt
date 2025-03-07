@@ -1,4 +1,4 @@
-when (non =) operator button is pressed
+when (non =, non clear) operator button is pressed
 	if `a` has no value, then store display in `a` and set `operator` to button value
 	if only `a` has a value, then set `operator` to button value
 	if both `a` and `b` have a value, then do the operation using the previously stored operator, and then store the result in `a` and clear `b`.

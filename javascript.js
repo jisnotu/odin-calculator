@@ -53,25 +53,50 @@ buttonContainer.addEventListener('click', event => {
 });
 
 function handleDigitButton(button) {
-  let value = button.textContent;
+  let value = +button.textContent;
 
-  if (display.textContent === '0') {
-    if (value === '0') {
-      return;
-    }
-    else {
+  if (operator === undefined) {
+    if (a === undefined) {
+      a = value;
       display.textContent = value;
     }
-  }
-
-  else {
-    if (display.textContent.length >= 12) {
-      return;
+    else { // a is defined
+      if (a === 0) {
+        if (value === 0) return;
+        else {
+          display.textContent = value;
+          a = value;
+        }
+      }
+      else { // a is not 0
+        if (display.textContent.length >= 12) return;
+        else {
+          display.textContent += value;
+          a = +display.textContent;
+        }
+      }
     }
-    else {
-      display.textContent += value;
+  }
+  else { // operator is defined
+    if (b === undefined) {
+      b = value;
+      display.textContent = value;
+    }
+    else { // b is defined
+      if (b === 0) {
+        if (value === 0) return;
+        else {
+          display.textContent = value;
+          b = value;
+        }
+      }
+      else { // b is not 0
+        if (display.textContent.length >= 12) return;
+        else {
+          display.textContent += value;
+          b = +display.textContent;
+        }
+      }
     }
   }
-  
-  a = +display.textContent;
 }
