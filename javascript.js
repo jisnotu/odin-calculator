@@ -35,6 +35,7 @@ let operator;
 
 let display = document.querySelector('.display div');
 display.textContent = a;
+
 const buttonContainer = document.querySelector('.button-container');
 buttonContainer.addEventListener('click', event => {
   let target = event.target;
@@ -118,7 +119,7 @@ function handleOperatorButton(button) {
       handleEqualButton();
       break;
     case 'C':
-      clearCalculator();
+      resetCalculator();
       break;
     default:
       alert('ERROR: Unrecognized operation!');
@@ -134,27 +135,50 @@ function handleBasicOperation(operation) {
     operator = operation;
   }
   else if (a !== undefined && b !== undefined) {
-    switch (operator) {
-      case '+':
-        a = add(a, b);
-        break;
-      case '-':
-        a = subtract(a, b);
-        break;
-      case '*':
-        a = multiply(a, b);
-        break;
-      case '/':
-        a = divide(a, b);
-        break;
-      default:
-        alert('ERROR: Stored operator is not a recognized operator!');
-    }
+    a = getResultOfStoredOperation();
     display.textContent = a;
     b = undefined;
     operator = operation;
   }
   else {
     alert('ERROR: Something went wrong while trying to handle a basic operation.');
+  }
+}
+
+function handleEqualButton() {
+  if (operator === undefined) return;
+  else { // operator is defined
+    if (a !== undefined && b !== undefined) {
+      display.textContent = getResultOfStoredOperation();
+      clearCalculatorVariables();
+    }
+    else return;
+  }
+}
+
+function clearCalculatorVariables() {
+  a = undefined;
+  b = undefined;
+  operator = undefined;
+}
+
+function resetCalculator() {
+  clearCalculatorVariables();
+  a = 0;
+  display.textContent = a;
+}
+
+function getResultOfStoredOperation() {
+  switch (operator) {
+    case '+':
+      return add(a, b);
+    case '-':
+      return subtract(a, b);
+    case '*':
+      return multiply(a, b);
+    case '/':
+      return divide(a, b);
+    default:
+      alert('ERROR: Stored operator is not a recognized operator!');
   }
 }
