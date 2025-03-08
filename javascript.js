@@ -14,8 +14,8 @@ function divide(a, b) {
   return a / b;
 }
 
-function operate(op, a, b) {
-  switch (op) {
+function operate() {
+  switch (operator) {
     case '+':
       return add(a, b);
     case '-':
@@ -135,7 +135,7 @@ function handleBasicOperation(operation) {
     operator = operation;
   }
   else if (a !== undefined && b !== undefined) {
-    a = getResultOfStoredOperation();
+    a = operate();
     display.textContent = a;
     b = undefined;
     operator = operation;
@@ -149,7 +149,7 @@ function handleEqualButton() {
   if (operator === undefined) return;
   else { // operator is defined
     if (a !== undefined && b !== undefined) {
-      display.textContent = getResultOfStoredOperation();
+      display.textContent = operate();
       clearCalculatorVariables();
     }
     else return;
@@ -166,19 +166,4 @@ function resetCalculator() {
   clearCalculatorVariables();
   a = 0;
   display.textContent = a;
-}
-
-function getResultOfStoredOperation() {
-  switch (operator) {
-    case '+':
-      return add(a, b);
-    case '-':
-      return subtract(a, b);
-    case '*':
-      return multiply(a, b);
-    case '/':
-      return divide(a, b);
-    default:
-      alert('ERROR: Stored operator is not a recognized operator!');
-  }
 }
