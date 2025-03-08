@@ -135,6 +135,10 @@ function handleBasicOperation(operation) {
     operator = operation;
   }
   else if (a !== undefined && b !== undefined) {
+    if (wouldBeDividingByZero()) {
+      handleDivideByZero();
+      return;
+    }
     a = operate();
     display.textContent = a;
     b = undefined;
@@ -149,6 +153,10 @@ function handleEqualButton() {
   if (operator === undefined) return;
   else { // operator is defined
     if (a !== undefined && b !== undefined) {
+      if (wouldBeDividingByZero()) {
+        handleDivideByZero();
+        return;
+      }
       display.textContent = operate();
       clearCalculatorVariables();
     }
@@ -166,4 +174,13 @@ function resetCalculator() {
   clearCalculatorVariables();
   a = 0;
   display.textContent = a;
+}
+
+function wouldBeDividingByZero() {
+  return operator === '/' && b === 0;
+}
+
+function handleDivideByZero() {
+  resetCalculator();
+  alert(`Oops, you can't divide by zero! Calculator has been reset.`);
 }
