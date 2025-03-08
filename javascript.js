@@ -46,6 +46,9 @@ buttonContainer.addEventListener('click', event => {
       case 'digit-button':
         handleDigitButton(target);
         break;
+      case 'operator-button':
+        handleOperatorButton(target);
+        break;
       default:
         alert('ERROR: An unrecognized button was pressed.');
     }
@@ -98,5 +101,60 @@ function handleDigitButton(button) {
         }
       }
     }
+  }
+}
+
+function handleOperatorButton(button) {
+  let operation = button.textContent;
+
+  switch (operation) {
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+      handleBasicOperation(operation);
+      break;
+    case '=':
+      handleEqualButton();
+      break;
+    case 'C':
+      clearCalculator();
+      break;
+    default:
+      alert('ERROR: Unrecognized operation!');
+  }
+}
+
+function handleBasicOperation(operation) {
+  if (a === undefined) {
+    a = +display.textContent;
+    operator = operation;
+  }
+  else if (a !== undefined && b === undefined) {
+    operator = operation;
+  }
+  else if (a !== undefined && b !== undefined) {
+    switch (operator) {
+      case '+':
+        a = add(a, b);
+        break;
+      case '-':
+        a = subtract(a, b);
+        break;
+      case '*':
+        a = multiply(a, b);
+        break;
+      case '/':
+        a = divide(a, b);
+        break;
+      default:
+        alert('ERROR: Stored operator is not a recognized operator!');
+    }
+    display.textContent = a;
+    b = undefined;
+    operator = operation;
+  }
+  else {
+    alert('ERROR: Something went wrong while trying to handle a basic operation.');
   }
 }

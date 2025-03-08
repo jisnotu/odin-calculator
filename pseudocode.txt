@@ -1,13 +1,13 @@
 when (non =, non clear) operator button is pressed
 	if `a` has no value, then store display in `a` and set `operator` to button value
 	if only `a` has a value, then set `operator` to button value
-	if both `a` and `b` have a value, then do the operation using the previously stored operator, and then store the result in `a` and clear `b`.
+	if both `a` and `b` have a value, then do the operation using the previously stored operator, and then display result, store the result in `a` and clear `b`, and update operator to the button value
 
 
 when = button is pressed
 	if `operator` doesn't have a value, then do nothing
 	if `operator` does have a value,
-		if `a` and `b` both have a value, then do the operation and clear `a`, `b`, and `operator`
+		if `a` and `b` both have a value, then do the operation, show in display, and clear `a`, `b`, and `operator`
 		otherwise, do nothing
 
 
