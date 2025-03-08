@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  return (a / b);
 }
 
 function operate() {
@@ -140,7 +140,7 @@ function handleBasicOperation(operation) {
       return;
     }
     a = operate();
-    display.textContent = a;
+    setDisplayTo(a);
     b = undefined;
     operator = operation;
   }
@@ -157,7 +157,7 @@ function handleEqualButton() {
         handleDivideByZero();
         return;
       }
-      display.textContent = operate();
+      setDisplayTo(operate());
       clearCalculatorVariables();
     }
     else return;
@@ -183,4 +183,36 @@ function wouldBeDividingByZero() {
 function handleDivideByZero() {
   resetCalculator();
   alert(`Oops, you can't divide by zero! Calculator has been reset.`);
+}
+
+function setDisplayTo(num) { // for use after calculations are done
+  let str = num.toString();
+  const MAX_LENGTH = 12;
+
+  if (str.length > MAX_LENGTH) {
+    let eIndex = str.indexOf('e');
+    if (eIndex !== -1) { // it's in scientific notation
+      let numOfOtherChars = (str.at(0) === '-') ? (str.length - 1) - eIndex + 1 + 1 : (str.length - 1) - eIndex + 1;
+      let numOfAvailableChars = MAX_LENGTH - numOfOtherChars;
+      let precision = (numOfAvailableChars > 1) ? numOfAvailableChars - 1 : numOfAvailableChars;
+      str = num.toPrecision(precision);
+    }
+    else { // it's not in scientific notation
+      let periodIndex = str.indexOf('.');
+      if (periodIndex !== -1) { // there's a decimal point
+        let numOfOtherChars = periodIndex + 1;
+        let numOfAvailableChars = MAX_LENGTH - numOfOtherChars;
+        str = num.toFixed(numOfAvailableChars);
+      }
+      else { // there's no decimal point
+        let sciFormStr = num.toExponential();
+        let periodIndex = sciFormStr.indexOf('.');
+        let eIndex = sciFormStr.indexOf('e');
+        let numOfOtherChars = (periodIndex + 1) + ((sciFormStr.length - 1) - eIndex + 1);
+        let numOfAvailableChars = MAX_LENGTH - numOfOtherChars;
+        str = num.toExponential(numOfAvailableChars);
+      }
+    }
+  }
+  display.textContent = str;
 }

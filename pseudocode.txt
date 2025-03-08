@@ -31,3 +31,11 @@ when digit button is pressed
 when clear button is pressed
   set display and `a` to 0
   clear `b` and `operator`
+
+
+convert number to a string
+  if string is greater than 12 characters long
+    if it's in scientific/exponential form (check for 'e'), then find how many characters are after e. Subtract that number (plus 1 for e, plus another 1 if there's a negative sign) - this gives number of significant digits. Set that as number of significant digits. BUT if the number of significant digits is more than 1, then there's also the decimal point, so subtract 1 more. Set display to that string.
+    else if it's a decimal point number, find how many characters are before the decimal point, then subtract that many (plus 1 for the decimal point) - this gives number available characters after decimal point. set display to string with that many decimal points
+    else if it's a non-scientific form, non-decimal point number, then force it into scientific form. Find out how many digits can be added after decimal point. To do that, find number of digits before decimal point, add 1 for decimal point. find number of characters after e, add 1 for e. Subtract this sum from max length. convert number into scientific with that many digits after decimal point. set display to that.
+  otherwise, set display to the string.
